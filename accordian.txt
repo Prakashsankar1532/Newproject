@@ -1,0 +1,24 @@
+
+
+Accordion
+
+S
+$('.accordion .accordion__head h5').click(function (event) {
+	event.preventDefault();
+
+	if ($win.width() < 768) {
+		var $this = $(this);
+		var $thisParent = $this.parent().closest('.accordion__section');
+		var activeClass = 'current';
+
+		var $this = $(this);
+
+		if ($thisParent.hasClass(activeClass)) {
+			$thisParent.removeClass(activeClass).find('.accordion__body').removeClass(activeClass).slideUp(350);
+		} else {
+			$thisParent.toggleClass(activeClass).find('.accordion__body').toggleClass(activeClass).slideDown(350);
+
+			$thisParent.siblings().removeClass(activeClass).find('.accordion__body').removeClass(activeClass).slideUp(350);
+		}
+	}
+});

@@ -1,0 +1,56 @@
+pecorama
+
+addtocart error message
+
+
+
+
+if(response == "Required parameter missing or invalid: id"){
+               $(this).text().replace("Required parameter missing or invalid: id", "Please select a color and size"); 
+               $addToCartBtn.after('<p class="note errors">' + variant + '</p>');
+            }else{
+             $addToCartBtn.after('<p class="note errors">' + response + '</p>');
+          } 
+		  
+$(document).ready(function() {
+  $("#selectgetvalue-option-0").prepend('<option value="0" selected>Select Size</option>'); 
+  $("#selectgetvalue-option-1").prepend('<option value="0" selected>Select Color</option>'); 
+});
+
+$(document).ready(function() {
+  var bodd = $('body').attr("date-template");
+  if(bodd.indexOf('product.modellers-library')!=-1){
+     $("#selectgetvalue-option-0").prepend('<option value="0" selected>Select Size</option>'); 
+   	$("#selectgetvalue-option-1").prepend('<option value="0" selected>Select Color</option>'); 
+  }
+  
+  var bodd = $('body').attr("date-template");
+  if(bodd.indexOf('product')!=-1){
+     $("#selectgetvalue-option-0").prepend('<option value="0" selected>Select Color</option>');  
+  }
+});
+
+
+$(".sticky_click").click(function(){
+var size = $("#selectgetvalue-option-0").val();
+var color = $("#selectgetvalue-option-1").val();
+if(size == 0 && color == 0){
+ $addToCartBtn.after('<p class="note errors">' + variant + '</p>');
+}else{
+ $addToCartBtn.after('<p class="note errors">' + response + '</p>');
+}
+});
+
+
+
+@media (max-width: 1199px) { 
+
+  #shopify-section-navigation-mobile{
+  
+  display : block;
+  }
+  #shopify-section-navigation{
+  display : none ;
+  }
+}
+

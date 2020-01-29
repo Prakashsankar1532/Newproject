@@ -1,0 +1,39 @@
+{% for block in section.blocks %} 
+  {% if block.settings.link_url != blank %}
+
+{% assign navlinks = block.settings.link_url %}
+{{navlinks}}
+
+ {% endif %}
+{%endfor%}{{"hi"}}
+
+
+ {% assign link_active = false %}
+    {% if request.path == block.settings.link_url %} 
+      {% assign link_active = true %}
+    {% endif %}
+  
+    {% for link in linklists[block.settings.dropdown_menu].links %}
+      {% if request.path == link.url %}
+        {% assign link_active = true %}
+        {% break %}
+      {% endif %}
+    {% endfor %}
+	
+	
+	{% if link_active == true %}active {% endif %}
+	
+	
+	
+/****  wishlist  ****/
+$("body").load(function(){
+ jQuery(".iwishAdded").addClass("iwishRemoveBtn");
+});
+
+jQuery(".iwishRemoveBtn").click(function() {
+		
+	});
+
+/****  wishlist  ****/
+
+ // jQuery(".iwishAdded").addClass("iwishRemoveBtn");

@@ -1,0 +1,35 @@
+4084
+Clear filter and sort menus
+Needle and thread
+
+             -----------------------  collection.liquid  ----------------------------
+
+
+ <span class="left">
+  {% if collection.handle == 'all' %}
+     <a href="/collections/all" class="clear_filter" > </a>
+     {% else %}
+   <a href="/collections/all" class="clear_filter" > CLEAR FILTERS</a>
+     {% endif %}
+  </span>
+					
+					
+              ---------------------------   scss      -------------------------------
+					
+					
+.collection-filters .filter-group .filter-clear{
+  
+  display : inline !important;
+  
+}
+
+
+.left{
+     float : left; 
+  }
+
+ @media only screen and (min-width: 1300px) {
+   .clear_filter{
+    display:none; 
+   }
+ }

@@ -1,0 +1,79 @@
+if (jQuery('.slider-intro').length) {
+      jQuery('.slider-intro').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        adaptiveHeight: false,
+        autoplay: false,
+        autoplaySpeed: 10000,
+        asNavFor: '.slider-intro-nav'
+      });
+      jQuery('.slider-intro-nav').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        asNavFor: '.slider-intro',
+        arrows: false,
+        focusOnSelect: true,
+        responsive: [{
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 2
+          }
+        }]
+      });
+    }
+
+  function loadScript(src) {
+     var script = document.createElement('script');
+     script.src = src;
+     document.body.append(script);
+   }
+    loadScript("https://code.jquery.com/jquery-2.2.0.min.js");
+  
+  if (navigator.appName == 'Microsoft Internet Explorer' ||  !!(navigator.userAgent.match(/Trident/) || navigator.userAgent.match(/rv:11/)) || (typeof $.browser !== "undefined" && $.browser.msie == 1))
+  {   
+      if (jQuery('.slider-intro').length) {
+      jQuery('.slider-intro').slick({
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        arrows: false,
+        adaptiveHeight: false,
+        autoplay: false,
+        autoplaySpeed: 10000,
+        asNavFor: '.slider-intro-nav'
+      });
+      jQuery('.slider-intro-nav').slick({
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        asNavFor: '.slider-intro',
+        arrows: false,
+        focusOnSelect: true,
+        responsive: [{
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 2
+          }
+        }]
+      });
+    }
+
+  }
+  
+  
+  
+  
+  
+if (navigator.appName == 'Microsoft Internet Explorer' ||  !!(navigator.userAgent.match(/Trident/) || navigator.userAgent.match(/rv:11/)) || (typeof $.browser !== "undefined" && $.browser.msie == 1))
+{
+ $(document).ready(function() {
+  $(window).scroll(function(){
+    var style = $('.js-sticky-sidebar').prop('style').width;
+    $('#bc-sf-filter-wrapper').removeClass("stickyscroll");
+    $('.js-sticky-sidebar').parent().addClass("stickyscroll");
+    $('.stickyscroll').css("width", style);
+  });
+ });
+}  
+  
+  
+  

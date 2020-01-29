@@ -1,0 +1,147 @@
+ 
+ 
+ 
+ --------------------------------------------------------  js code   ---------------------------------------
+ 
+ $(".cartquan").keyup(function(e){
+    
+   
+    var idget = $(this).attr("data-attr");
+    var quant = $(this).val();
+    $(this).attr("value",quant);
+    // console.log($(this).attr("id"),$(this).attr("value"),$(this).val());
+
+      
+    jQuery.post('/cart/update.js', "updates["+idget+"]="+quant); 
+    setTimeout(function(){
+           
+  	 window.location.href = 'https://pecorama.myshopify.com/cart';
+     
+    }, 1000);
+    
+	});
+
+	
+	               {% assign quantity = '' %}
+                   {%for line_item in cart.items%}
+                       {% assign quantity = quantity  | append: line_item.quantity | append : "," %}
+                    {%endfor%} 
+                    <input type="hidden" value="{{ quantity  }}" id="quanval">
+					
+			
+
+
+
+			
+Sloved code:
+
+
+
+
+{%assign total_Variant = 0%}
+{%assign each_Variant_quan = '' %}
+{%assign lineItemeId = '' %}
+{%assign lineItemeQuantityt = '' %}
+{%for line_item in cart.items%}
+    {%assign lineItemeId = lineItemeId  | append : line_item.id | append : ','  %}
+    {%assign lineItemeQuantityt = lineItemeQuantityt  | append : line_item.quantity | append : ','  %}
+    {%for variant line_item.product.variants%}
+        {%assign total_Variant = total_Variant | plus : variant.inventory_quantity%}
+    {%enfor%}
+    {%assign each_Variant_quan = each_Variant_quan | append : total_Variant | append : ',' %}
+    
+{%endfor%}
+
+<input type ='hidden' value = {{lineItemeId}} class='idArrClass' />
+<input type ='hidden' value = {{lineItemeQuantityt}} class='quanArrClass' />
+<input type ='hidden' value = {{each_Variant_quan}} class='totalQuanArrClass' />
+
+
+[12131,2312312324,435345646,567567567,768768]
+[4,1,1,1,2]
+[12,10,20,50,50]
+
+var indexval = 1 -1 = 0
+
+if(2ndArr[indexVal] > 3rdArr[indexVal])
+{
+    show error
+}
+
+Ans
+
+
+
+js code :
+ 
+    $(".cartquan").keyup(function(e){
+      
+      var getIndex = $(this).attr('data-index');
+      var idArrVal = ($('.idArrClass').val()).split(',');
+      var quanArrval = ($('.quanArrClass').val()).split(',');
+      var totalQuanArrval = ($('.totalQuanArrClass').val()).split(',');
+      quanArrval[getIndex] = $(this).val();
+     // console.log(idArrVal);
+//       console.log(quanArrval);
+//       console.log(totalQuanArrval);
+//       alert(quanArrval[getIndex])
+//       alert(totalQuanArrval[getIndex])
+      if(parseInt(quanArrval[getIndex])>parseInt(totalQuanArrval[getIndex]))
+      {
+         $('#errmsg').text("Please select a lower quantity");
+      }
+        
+   
+    });
+	
+	
+	-----------------------------------------------------  cart.liquid  -----------------------------------------------
+	
+	
+      {%assign total_Variant = 0 %}
+                      {%assign each_Variant_quan = '' %}
+                      {%assign lineItemeId = '' %}
+                      {%assign lineItemeQuantityt = '' %}
+                      {%for line_item in cart.items%}
+                          {%assign lineItemeId = lineItemeId  | append : line_item.id | append : ','  %}
+                          {%assign lineItemeQuantityt = lineItemeQuantityt  | append : line_item.quantity | append : ','  %}
+                          {%for variant in line_item.product.variants%}
+                              {%assign total_Variant = total_Variant | plus : variant.inventory_quantity%}
+                          {%endfor%}
+                          {%assign each_Variant_quan = each_Variant_quan | append : total_Variant | append : ',' %}
+
+                      {%endfor%}
+
+                      <input type ='hidden' value = {{lineItemeId}} class='idArrClass' />
+                      <input type ='hidden' value = {{lineItemeQuantityt}} class='quanArrClass' />
+                      <input type ='hidden' value = {{each_Variant_quan}} class='totalQuanArrClass' />
+
+         
+                    <div class="grid__item one-quarter text-center">
+                      <label for="updates_{{ item.key }}" class="cart__mini-labels">{{ 'cart.label.quantity' | t }}</label>
+                   
+                    <input type="number" data-index='{{forloop.index0}}' data-attr={{ item.id  }} class="cart__quantity-selector cartquan cartupdat-{{ item.id  }}" name="updates[]" id="updates_{{ item.key }}" value="{{ item.quantity }}" aria-label="{{ 'cart.label.quantity' | t }}">
+                      
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+					
+					

@@ -1,0 +1,15 @@
+{%for line_item in cart.line_items%}
+    {{line_item.quantity}}
+{%endfor%}
+
+
+{%for variant in product.variants%}
+    {{variant.inventory_quantity}}
+{%endfor%}
+
+
+                     {% for line in cart.items %}
+                     {% for line_item in line_items %}
+                      <input type="hidden" value="{{ item.quantity  }}" id="quanval"> 
+                     {% endfor %}
+                    {% endfor %} 

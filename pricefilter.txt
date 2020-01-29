@@ -1,0 +1,67 @@
+$(window).load(function(){
+   	var rep;
+  setTimeout(function(){
+   	var pricedis =  $(".pricedisplay span").html();
+    if(pricedis!=undefined){
+    	var getnu = getNumbers(pricedis)
+ 		rep =$(".pricedisplay span").html().replace(getnu,"")
+    }
+    $(".filter-group-precio div li a").each(function(){
+    
+   		var rp =  $(this).html();
+      console.log(rp);
+    	var res = rp.replace(/[€]/g,rep).replace("Sobre","OVER").replace("Debajo","UNDER");
+           
+       $(this).html(res);
+  
+  });
+  
+  },1000);
+  
+});
+
+
+
+<!-- snippet/product-price.liquid -->
+{% if product.title %}
+  {%- assign compare_at_price = product.compare_at_price -%}
+  {%- assign price = product.price -%}
+  {%- assign price_varies = product.price_varies -%}
+  {%- assign available = product.available -%}
+{% else %}
+  {%- assign compare_at_price = 1999 -%}
+  {%- assign price = 1999 -%}
+  {%- assign price_varies = false -%}
+  {%- assign available = true -%}
+{% endif %}
+
+{%- assign money_price = price | money -%}
+
+{% if compare_at_price > price %}
+  {% if price_varies %}
+    <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+    <span class="product-price__price price__strike">{{ compare_at_price | money }}</span>
+    <span class="product-price__price product-price__sale">{{ money_price }}
+      <span class="product-price__sale-label visually-hidden">{{ 'products.product.on_sale' | t }}</span>
+    </span>
+  {% else %}
+    <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+    <span class="product-price__price price__strike">{{ compare_at_price | money }}</span>
+    <span class="product-price__price product-price__sale pricedisplay">
+      {{ money_price }}
+      <span class="product-price__sale-label visually-hidden">{{ 'products.product.on_sale' | t }}</span>
+    </span>
+  {% endif %}
+{% else %}
+
+  {% if price_varies %}
+    <span class="product-price__price">{{ money_price }}</span>
+  {% else %}
+    <span class="visually-hidden">{{ 'products.product.regular_price' | t }}</span>
+    <span class="product-price__price pricedisplay">{{ money_price }}</span>
+  {% endif %}
+{% endif %}
+
+{% unless available %}
+  <span class="product-price__sold-out">{{ 'products.product.sold_out' | t }}</span>
+{% endunless %}

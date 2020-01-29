@@ -1,0 +1,18 @@
+php connect with shopify
+search box
+search result page 
+product
+
+
+search :
+
+Location - chennai (API)
+
+tag / catagory - IT
+
+
+
+
+https://eastsideco.com/blog/developing-shoth-laravel-php
+
+

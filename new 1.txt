@@ -1,0 +1,16 @@
+show all products in collection page
+
+{% for product in collections['all'].products%}
+
+{% endfor %}
+
+pagination
+
+{% paginate collection.products by 60 %}
+
+{% endpaginate %}
+
+Note:
+collection.products by 500
+collection.products by limit
+limits have an default 50

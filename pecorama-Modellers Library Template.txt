@@ -1,0 +1,53 @@
+pecorama 
+product page
+
+
+
+                      -----------------------  product.modullers-library.liquid  -------------------------------------
+
+
+
+<form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
+                  <select name="id" id="selectgetvalue" class="product-single__variants">
+                  {% for variant in product.variants %}
+                  <option class='commonSelected {{variant.title | append:'Class'}}' data-var-val = '{%if variant.available%}true{%else%}false{%endif%}' {% unless variant.available %} disabled="disabled" {% endunless %} data-sku="{{ variant.sku }}" value="{{ variant.id }}">{{ variant.title }}</option>
+                  {% endfor %}
+                  </select>
+                  
+                  
+                  {% if settings.product_quantity_enable %}
+                  <div class="input_div-qty">
+                    <input type="text" id="Quantity-{{ product.id }}" name="quantity" value="1" class="display-table-cell div-qty">
+                  </div>
+                {% endif %}
+                
+                <div class="button_div-btn">
+                  <div class='addToClassDummy' ></div>
+                  <button type="submit" class='addToCartClass' name="add" id="AddToCart-{{ product.id }}" class="display-table-cell addwish div-btn">
+                    {{ 'products.product.add_to_basket' | t }}
+                  </button>
+                </div>
+                
+                {% comment %}
+                {% if product.available  %}
+   				  <button type="submit" name="add" id="AddToCart" class="btn btn--secondary btn-buy__now">BUY NOW</button>
+				
+  				{% else %}
+                    <button type=""  id="AddToCartSold" class="btn btn--secondary btn-sold-out" disabled>SOLD OUT</button>
+				{% endif %}	            
+                {% endcomment %}
+                  
+            	</form>  
+				
+				
+		                       ---------------------------  theme.js  ------------------------------------
+				
+				
+				
+				$(document).ready(function(){
+				  $('.selector-wrapper').hide();
+				});
+				
+				
+				
+				

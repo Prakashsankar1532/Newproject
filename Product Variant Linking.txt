@@ -1,0 +1,37 @@
+Product Variant Linking
+
+
+Serenity Charles & Colvard Moissanite 18k White Gold Solitaire Ring
+
+            --------------------------------------------     js code    ------------------------------------------------
+
+			$(window).load(function(){
+			var tagval =$('#tagval').html();
+			$('#product-selectors-option-1').append(tagval);
+			$(document).on('change', '#product-selectors-option-1', function() {
+			   var selectedtaglink = $(this).children("option:selected").val();
+			   var linkval = $(".open-link").attr("data-href");
+			   window.location.href = linkval;
+			});
+
+			});
+
+			
+			
+              ---------------------------------------------   product templete  -----------------------------------------
+
+			 {% assign tagvalues = '{{ all_products[linkvalue].title }}' %}
+							 <input type="hidden" class="tagvalues" value="{{tagvalues}}">
+							  <div style="display:none;">
+								<label for="tagval">Metal<em>*</em></label>
+								<select  id="tagval">
+								   {% for tag in product.tags %}                          
+									{% if tag contains 'link-' %}
+									  {% assign linkvalue = tag | remove : "link-" %}
+									   <option value="{{ tag }}" class="open-link" data-href="/products/{{ linkvalue }}">{{ all_products[linkvalue].title }}</option>
+									{% endif %}
+								   {% endfor %}
+								</select>
+							  </div>
+							  
+							  
